@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一周轻食晚餐计划</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6f1e7;
+    --paper:#fffdf8;
+    --ink:#33372c;
+    --ink-soft:#6e6f5f;
+    --green:#33513f;
+    --sage:#8aa07d;
+    --sage-tint:#e8eee1;
+    --terra:#c5713f;
+    --terra-tint:#f6e4d6;
+    --line:#e3dccd;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Noto Sans SC",sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    padding:48px 20px 64px;
+    background-image:radial-gradient(circle at 12% 8%,rgba(138,160,125,.10),transparent 38%),radial-gradient(circle at 88% 92%,rgba(197,113,63,.08),transparent 40%);
+  }
+  .wrap{max-width:920px;margin:0 auto}
+
+  /* Header */
+  .header{text-align:center;margin-bottom:44px;position:relative}
+  .kicker{
+    font-family:"Fraunces",serif;font-style:italic;font-size:18px;
+    color:var(--terra);letter-spacing:.5px;margin-bottom:6px;
+  }
+  .header h1{
+    font-family:"Noto Serif SC",serif;font-weight:700;
+    font-size:42px;letter-spacing:4px;color:var(--green);line-height:1.2;
+  }
+  .header .sub{
+    margin-top:14px;color:var(--ink-soft);font-weight:300;
+    font-size:15px;letter-spacing:.5px;
+  }
+  .divider{
+    width:60px;height:2px;background:var(--terra);
+    margin:22px auto 0;border-radius:2px;position:relative;
+  }
+  .divider::before,.divider::after{
+    content:"";position:absolute;top:50%;width:5px;height:5px;
+    background:var(--terra);border-radius:50%;transform:translateY(-50%);
+  }
+  .divider::before{left:-12px}
+  .divider::after{right:-12px}
+
+  /* Principles */
+  .principles{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:42px;
+  }
+  .pri{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    padding:18px 16px;text-align:center;
+  }
+  .pri .ic{font-size:24px;line-height:1;margin-bottom:8px;display:block}
+  .pri .t{font-family:"Noto Serif SC",serif;font-weight:600;font-size:15px;color:var(--green);margin-bottom:3px}
+  .pri .d{font-size:12px;color:var(--ink-soft);font-weight:300}
+
+  /* Day cards */
+  .days{display:flex;flex-direction:column;gap:14px}
+  .day{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:20px 24px;display:grid;grid-template-columns:78px 1fr;gap:22px;align-items:center;
+    transition:transform .15s ease;
+  }
+  .day:hover{transform:translateX(3px)}
+  .daytag{text-align:center;border-right:1px solid var(--line);padding-right:8px}
+  .daytag .cn{font-family:"Noto Serif SC",serif;font-weight:700;font-size:22px;color:var(--green)}
+  .daytag .en{font-family:"Fraunces",serif;font-style:italic;font-size:13px;color:var(--terra);letter-spacing:1px}
+
+  .meals{display:grid;grid-template-columns:1fr 1fr;gap:8px 26px}
+  .meal{display:flex;align-items:baseline;gap:8px;font-size:14px}
+  .meal .lbl{
+    flex-shrink:0;font-size:11px;color:var(--ink-soft);font-weight:500;
+    width:30px;letter-spacing:1px;
+  }
+  .meal .txt{color:var(--ink);font-weight:300}
+  .fixed{opacity:.62}
+  .fixed .txt::after{
+    content:"固定";font-size:9px;color:var(--sage);border:1px solid var(--sage);
+    border-radius:4px;padding:1px 4px;margin-left:6px;font-weight:400;vertical-align:1px;
+  }
+  /* dinner spans full width & highlighted */
+  .dinner{grid-column:1 / -1;background:var(--terra-tint);border-radius:10px;padding:8px 12px;margin-top:2px}
+  .dinner .lbl{color:var(--terra);font-weight:600}
+  .dinner .txt{color:var(--green);font-weight:500;font-size:14.5px}
+
+  /* Footer tips */
+  .tips{
+    margin-top:40px;background:var(--sage-tint);border-radius:16px;
+    padding:26px 30px;border:1px solid #d8e0cd;
+  }
+  .tips h3{
+    font-family:"Noto Serif SC",serif;font-weight:600;color:var(--green);
+    font-size:18px;margin-bottom:14px;display:flex;align-items:center;gap:8px;
+  }
+  .tips ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+  .tips li{font-size:13.5px;color:var(--ink);font-weight:300;padding-left:18px;position:relative}
+  .tips li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--terra);border-radius:50%}
+
+  .foot{text-align:center;margin-top:34px;font-size:12px;color:var(--ink-soft);font-weight:300}
+  .foot .note{font-family:"Fraunces",serif;font-style:italic;color:var(--sage)}
+
+  @media(max-width:680px){
+    .principles{grid-template-columns:repeat(2,1fr)}
+    .day{grid-template-columns:60px 1fr;gap:14px;padding:16px}
+    .meals{grid-template-columns:1fr}
+    .tips ul{grid-template-columns:1fr}
+    .header h1{font-size:32px}
+  }
+  @media print{
+    body{background:#fff;padding:0;background-image:none}
+    .day:hover{transform:none}
+    .day,.pri,.tips{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="kicker">A Week of Light Dinners</div>
+    <h1>一周轻食晚餐计划</h1>
+    <div class="sub">早餐 · 午餐保持不变 ｜ 只把晚餐调轻，更易坚持，不易反弹</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="principles">
+    <div class="pri"><span class="ic">🌾</span><div class="t">少精制主食</div><div class="d">换粗粮或减半</div></div>
+    <div class="pri"><span class="ic">🍤</span><div class="t">蛋白质要够</div><div class="d">扛饿又护肌肉</div></div>
+    <div class="pri"><span class="ic">🥬</span><div class="t">蔬菜放开吃</div><div class="d">低热量有饱腹</div></div>
+    <div class="pri"><span class="ic">💧</span><div class="t">清淡不晚吃</div><div class="d">蒸煮·睡前3h</div></div>
+  </div>
+
+  <div class="days">
+
+    <div class="day">
+      <div class="daytag"><div class="cn">周一</div><div class="en">MON</div></div>
+      <div class="meals">
+        <div class="meal fixed"><span class="lbl">早</span><span class="txt">肠粉一份</span></div>
+        <div class="meal fixed"><span class="lbl">午</span><span class="txt">一荤一素 + 米饭</span></div>
+        <div class="meal dinner"><span class="lbl">晚</span><span class="txt">清蒸鲈鱼 · 蒜蓉西兰花 · 半根水煮玉米</span></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="daytag"><div class="cn">周二</div><div class="en">TUE</div></div>
+      <div class="meals">
+        <div class="meal fixed"><span class="lbl">早</span><span class="txt">肠粉一份</span></div>
+        <div class="meal fixed"><span class="lbl">午</span><span class="txt">一荤一素 + 米饭</span></div>
+        <div class="meal dinner"><span class="lbl">晚</span><span class="txt">番茄豆腐汤 · 水煮蛋1个 · 凉拌黄瓜</span></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="daytag"><div class="cn">周三</div><div class="en">WED</div></div>
+      <div class="meals">
+        <div class="meal fixed"><span class="lbl">早</span><span class="txt">肠粉一份</span></div>
+        <div class="meal fixed"><span class="lbl">午</span><span class="txt">一荤一素 + 米饭</span></div>
+        <div class="meal dinner"><span class="lbl">晚</span><span class="txt">白灼虾 · 清炒油麦菜 · 一小碗杂粮饭</span></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="daytag"><div class="cn">周四</div><div class="en">THU</div></div>
+      <div class="meals">
+        <div class="meal fixed"><span class="lbl">早</span><span class="txt">肠粉一份</span></div>
+        <div class="meal fixed"><span class="lbl">午</span><span class="txt">一荤一素 + 米饭</span></div>
+        <div class="meal dinner"><span class="lbl">晚</span><span class="txt">鸡胸肉蔬菜沙拉（橄榄油+醋少许）</span></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="daytag"><div class="cn">周五</div><div class="en">FRI</div></div>
+      <div class="meals">
+        <div class="meal fixed"><span class="lbl">早</span><span class="txt">肠粉一份</span></div>
+        <div class="meal fixed"><span class="lbl">午</span><span class="txt">一荤一素 + 米饭</span></div>
+        <div class="meal dinner"><span class="lbl">晚</span><span class="txt">紫菜蛋花汤 · 蒸南瓜一小块 · 蒜蓉菠菜</span></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="daytag"><div class="cn">周六</div><div class="en">SAT</div></div>
+      <div class="meals">
+        <div class="meal fixed"><span class="lbl">早</span><span class="txt">肠粉一份</span></div>
+        <div class="meal fixed"><span class="lbl">午</span><span class="txt">一荤一素 + 米饭</span></div>
+        <div class="meal dinner"><span class="lbl">晚</span><span class="txt">香煎龙利鱼（少油）· 烤杂蔬 · 一小块红薯</span></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="daytag"><div class="cn">周日</div><div class="en">SUN</div></div>
+      <div class="meals">
+        <div class="meal fixed"><span class="lbl">早</span><span class="txt">肠粉一份</span></div>
+        <div class="meal fixed"><span class="lbl">午</span><span class="txt">一荤一素 + 米饭</span></div>
+        <div class="meal dinner"><span class="lbl">晚</span><span class="txt">杂蔬瘦肉粥（少米多菜）· 凉拌木耳</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tips">
+    <h3>🌿 小提醒</h3>
+    <ul>
+      <li>每餐吃到七八分饱即可，不必硬扛饥饿</li>
+      <li>运动量大、特别饿时可加一个蛋或一份豆腐</li>
+      <li>多喝水，餐前一杯水有助于控制食量</li>
+      <li>配合散步、爬楼等日常活动，效果更稳更持久</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    <span class="note">Eat well, feel good.</span><br>
+    如有血糖、肠胃等健康状况，执行前请咨询医生或营养师。
+  </div>
+
+</div>
+</body>
+</html>

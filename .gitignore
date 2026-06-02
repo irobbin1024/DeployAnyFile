@@ -1,0 +1,10 @@
+/backend/target
+/frontend/node_modules
+/frontend/dist
+/frontend/vite.config.js.timestamp-*
+/data
+.env
+*.db
+*.db-shm
+*.db-wal
+.DS_Store
