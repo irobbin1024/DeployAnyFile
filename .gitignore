@@ -1,10 +1,44 @@
-/backend/target
-/frontend/node_modules
-/frontend/dist
-/frontend/vite.config.js.timestamp-*
+# ---- 运行数据（数据库 + 上传文件，绝不提交）----
 /data
-.env
+/backend/data
 *.db
 *.db-shm
 *.db-wal
+*.sqlite
+*.sqlite3
+
+# ---- 环境与密钥 ----
+.env
+.env.*
+!.env.example
+deploy.env
+
+# ---- 后端 (Rust) ----
+/backend/target
+**/*.rs.bk
+
+# ---- 前端 (Node) ----
+/frontend/node_modules
+/frontend/dist
+/frontend/.vite
+/frontend/vite.config.js.timestamp-*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- 日志 ----
+*.log
+logs/
+
+# ---- 操作系统 ----
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

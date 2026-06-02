@@ -1,0 +1,11 @@
+# Rust build output
+/target
+
+# Backend runtime data (SQLite DB + uploads)
+/data
+*.db
+*.db-shm
+*.db-wal
+
+# Backup files from rustfmt
+**/*.rs.bk

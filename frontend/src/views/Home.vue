@@ -282,24 +282,24 @@ onMounted(load)
         <template v-for="row in displayRows" :key="row.gap ? 'gap' : row.f.id">
           <tr v-if="row.gap" class="gap-row"><td colspan="8"></td></tr>
           <tr v-else :class="{ 'just-uploaded': row.recent }">
-            <td><input type="checkbox" :checked="selected.has(row.f.id)" @change="toggle(row.f.id)" /></td>
-            <td>
+            <td class="cell-check" data-label="选择"><input type="checkbox" :checked="selected.has(row.f.id)" @change="toggle(row.f.id)" /></td>
+            <td class="cell-name" data-label="文件名">
               <router-link class="fname-link" :to="{ name: 'preview', params: { slug: row.f.slug } }">
                 <span class="fname" :title="row.f.original_name">{{ row.f.original_name }}</span>
               </router-link>
               <span v-if="row.recent" class="new-badge">刚上传</span>
               <div class="muted" style="font-size:12px">/p/{{ row.f.slug }}</div>
             </td>
-            <td><span class="tag" :class="row.f.category">{{ catLabel(row.f.category) }}</span></td>
-            <td class="muted">{{ fmtSize(row.f.size) }}</td>
-            <td>
+            <td data-label="类型"><span class="tag" :class="row.f.category">{{ catLabel(row.f.category) }}</span></td>
+            <td class="muted" data-label="大小">{{ fmtSize(row.f.size) }}</td>
+            <td data-label="状态">
               <span :class="row.f.is_shared ? 'badge-on' : 'badge-off'">
                 {{ row.f.is_shared ? '分享中' : '已关闭' }}
               </span>
             </td>
-            <td class="muted">{{ row.f.view_count }}</td>
-            <td class="muted">{{ fmtDate(row.f.created_at) }}</td>
-            <td>
+            <td class="muted" data-label="浏览">{{ row.f.view_count }}</td>
+            <td class="muted" data-label="上传时间">{{ fmtDate(row.f.created_at) }}</td>
+            <td class="cell-actions" data-label="操作">
               <div class="row-actions">
                 <button class="btn sm ghost" @click="copyLink(row.f.slug)">🔗 复制链接</button>
                 <button class="btn sm ghost" @click="openStats(row.f)">📊 分享详情</button>

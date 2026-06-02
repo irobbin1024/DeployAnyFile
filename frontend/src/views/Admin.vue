@@ -91,14 +91,14 @@ onMounted(load)
       </thead>
       <tbody>
         <tr v-for="u in users" :key="u.id">
-          <td class="muted">{{ u.id }}</td>
-          <td class="fname">{{ u.username }}</td>
-          <td>
+          <td class="muted" data-label="ID">{{ u.id }}</td>
+          <td class="fname" data-label="用户名">{{ u.username }}</td>
+          <td data-label="角色">
             <span class="tag" :class="u.is_admin ? 'html' : 'text'">{{ u.is_admin ? '管理员' : '普通用户' }}</span>
           </td>
-          <td class="muted">{{ u.file_count }}</td>
-          <td class="muted">{{ fmtDate(u.created_at) }}</td>
-          <td>
+          <td class="muted" data-label="文件数">{{ u.file_count }}</td>
+          <td class="muted" data-label="注册时间">{{ fmtDate(u.created_at) }}</td>
+          <td class="cell-actions" data-label="操作">
             <div class="row-actions">
               <button class="btn sm" @click="openReset(u)">重置密码</button>
               <button

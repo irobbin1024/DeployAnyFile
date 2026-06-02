@@ -9,7 +9,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # ---------- Stage 2: build backend ----------
-FROM rust:1.79-bookworm AS backend
+FROM rust:1-bookworm AS backend
 WORKDIR /app
 # Cache dependencies first
 COPY backend/Cargo.toml ./backend/Cargo.toml
