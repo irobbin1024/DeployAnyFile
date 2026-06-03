@@ -1,4 +1,6 @@
 # ---- 运行数据（数据库 + 上传文件，绝不提交）----
+# 匹配任意层级名为 data 的目录（含 backend/data、backend/src/data 等运行时目录）
+data/
 /data
 /backend/data
 *.db

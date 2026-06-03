@@ -231,6 +231,16 @@ label { display: block; font-weight: 500; margin-bottom: 6px; }
 .preview-stage audio { align-self: center; margin-top: 48px; width: 480px; max-width: 100%; }
 .preview-stage .empty { align-self: center; margin: 56px auto; }
 
+/* unsupported file info card */
+.unsupported { align-self: center; margin: 48px auto; width: 100%; display: flex; justify-content: center; }
+.unsupported-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 36px 32px; max-width: 460px; width: 100%; text-align: center; }
+.unsupported-card .file-ico { font-size: 48px; line-height: 1; margin-bottom: 12px; }
+.unsupported-card .file-title { margin: 0 0 4px; font-size: 18px; word-break: break-all; }
+.unsupported-card .file-meta { text-align: left; border-top: 1px solid var(--border); padding-top: 14px; }
+.unsupported-card .file-meta > div { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; font-size: 14px; }
+.unsupported-card .file-meta span { color: var(--muted); flex: 0 0 auto; }
+.unsupported-card .file-meta b { font-weight: 500; text-align: right; word-break: break-all; }
+
 .preview-text { background: var(--panel); padding: 22px 26px; white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
 .markdown-body { background: var(--panel); padding: 26px 34px; }
 .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--border); padding-bottom: 6px; }

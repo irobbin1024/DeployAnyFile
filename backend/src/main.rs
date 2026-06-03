@@ -8,6 +8,8 @@ mod state;
 mod util;
 
 use axum::extract::DefaultBodyLimit;
+use axum::http::header::CACHE_CONTROL;
+use axum::http::HeaderValue;
 use axum::routing::{delete, get, patch, post};
 use axum::Router;
 use config::Config;
@@ -16,6 +18,7 @@ use std::net::SocketAddr;
 use std::sync::Arc;
 use tower_http::cors::CorsLayer;
 use tower_http::services::{ServeDir, ServeFile};
+use tower_http::set_header::SetResponseHeaderLayer;
 use tower_http::trace::TraceLayer;
 
 #[tokio::main]
@@ -67,7 +70,12 @@ async fn main() -> anyhow::Result<()> {
         .route("/files/:id/stats", get(handlers::files::file_stats))
         .route("/stats", get(handlers::files::site_stats))
         // public metadata
-        .route("/public/:slug", get(handlers::public::public_meta));
+        .route("/public/:slug", get(handlers::public::public_meta))
+        // never cache API responses (avoids stale lists behind proxies/browsers)
+        .layer(SetResponseHeaderLayer::overriding(
+            CACHE_CONTROL,
+            HeaderValue::from_static("no-store"),
+        ));
 
     let serve_dir = ServeDir::new(&static_dir)
         .not_found_service(ServeFile::new(format!("{static_dir}/index.html")));

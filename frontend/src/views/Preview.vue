@@ -189,9 +189,20 @@ onMounted(load)
       <iframe v-else-if="meta.category === 'html'" :src="mediaSrc" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       <div v-else-if="meta.category === 'markdown'" class="markdown-body" v-html="mdHtml"></div>
       <pre v-else-if="meta.category === 'text'" class="preview-text">{{ textContent }}</pre>
-      <div v-else class="empty">
-        <p>该文件类型不支持在线预览。</p>
-        <button class="btn primary" @click="download">下载文件</button>
+      <div v-else class="unsupported">
+        <div class="unsupported-card">
+          <div class="file-ico">📄</div>
+          <h3 class="file-title">{{ meta.original_name }}</h3>
+          <p class="muted" style="margin:0 0 18px">该文件类型暂不支持在线预览</p>
+          <div class="file-meta">
+            <div><span>类型</span><b>{{ catLabel(meta.category) }}</b></div>
+            <div><span>大小</span><b>{{ fmtSize(meta.size) }}</b></div>
+            <div><span>格式</span><b>{{ meta.mime_type }}</b></div>
+            <div><span>上传时间</span><b>{{ fmtDate(meta.created_at) }}</b></div>
+            <div v-if="meta.owner"><span>上传者</span><b>{{ meta.owner }}</b></div>
+          </div>
+          <button class="btn primary" @click="download" style="margin-top:20px">⬇ 下载文件</button>
+        </div>
       </div>
     </div>
 

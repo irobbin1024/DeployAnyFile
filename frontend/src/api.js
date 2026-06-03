@@ -13,7 +13,7 @@ async function request(method, path, body, isForm = false) {
     payload = JSON.stringify(body)
   }
 
-  const res = await fetch(`/api${path}`, { method, headers, body: payload })
+  const res = await fetch(`/api${path}`, { method, headers, body: payload, cache: 'no-store' })
 
   if (res.status === 401) {
     auth.clear()
