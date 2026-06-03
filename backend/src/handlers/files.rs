@@ -1,4 +1,4 @@
-use crate::auth::AuthUser;
+use crate::auth::{ApiUser, AuthUser};
 use crate::error::{AppError, AppResult};
 use crate::models::{FileDto, FileRow, IdList, SetShare, UpdateSlug, VisitRow};
 use crate::state::AppState;
@@ -44,7 +44,7 @@ impl From<FileListRow> for FileDto {
 
 pub async fn upload(
     State(st): State<AppState>,
-    user: AuthUser,
+    user: ApiUser,
     mut mp: Multipart,
 ) -> AppResult<Json<FileDto>> {
     let mut custom_slug: Option<String> = None;

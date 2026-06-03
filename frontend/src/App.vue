@@ -38,6 +38,7 @@ function logout() {
   <header v-if="!bareLayout" class="topbar">
     <span class="brand">📦 DeployAnyFile</span>
     <router-link class="nav-link" :to="{ name: 'home' }">我的文件</router-link>
+    <router-link class="nav-link" :to="{ name: 'tokens' }">API 令牌</router-link>
     <router-link v-if="auth.isAdmin" class="nav-link" :to="{ name: 'admin' }">用户管理</router-link>
     <span class="spacer"></span>
     <span class="muted">{{ auth.user?.username }}<span v-if="auth.isAdmin"> · 管理员</span></span>

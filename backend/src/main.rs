@@ -69,6 +69,12 @@ async fn main() -> anyhow::Result<()> {
         .route("/files/:id/slug", patch(handlers::files::update_slug))
         .route("/files/:id/stats", get(handlers::files::file_stats))
         .route("/stats", get(handlers::files::site_stats))
+        // personal API tokens
+        .route(
+            "/tokens",
+            get(handlers::tokens::list_tokens).post(handlers::tokens::create_token),
+        )
+        .route("/tokens/:id", delete(handlers::tokens::delete_token))
         // public metadata
         .route("/public/:slug", get(handlers::public::public_meta))
         // never cache API responses (avoids stale lists behind proxies/browsers)

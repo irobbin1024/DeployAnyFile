@@ -64,6 +64,11 @@ export const api = {
   fileStats: (id) => request('GET', `/files/${id}/stats`),
   siteStats: () => request('GET', '/stats'),
 
+  // api tokens
+  listTokens: () => request('GET', '/tokens'),
+  createToken: (name) => request('POST', '/tokens', { name }),
+  deleteToken: (id) => request('DELETE', `/tokens/${id}`),
+
   // public
   publicMeta: (slug) => request('GET', `/public/${slug}`),
 }

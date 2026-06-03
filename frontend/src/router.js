@@ -6,6 +6,7 @@ const routes = [
   { path: '/register', name: 'register', component: () => import('./views/Register.vue') },
   { path: '/', name: 'home', component: () => import('./views/Home.vue'), meta: { auth: true } },
   { path: '/admin', name: 'admin', component: () => import('./views/Admin.vue'), meta: { auth: true, admin: true } },
+  { path: '/tokens', name: 'tokens', component: () => import('./views/Tokens.vue'), meta: { auth: true } },
   { path: '/p/:slug', name: 'preview', component: () => import('./views/Preview.vue') },
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]

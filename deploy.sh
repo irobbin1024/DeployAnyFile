@@ -11,7 +11,7 @@
 #
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # ---- 默认配置（建议在 deploy.env 里覆盖，不要直接改这里）----
 NAS_USER="${NAS_USER:-irobbin}"

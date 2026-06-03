@@ -1,6 +1,7 @@
 pub mod auth;
 pub mod files;
 pub mod public;
+pub mod tokens;
 pub mod users;
 
 use crate::error::AppError;

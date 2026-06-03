@@ -111,3 +111,17 @@ pub struct UpdateSlug {
 pub struct SetShare {
     pub is_shared: bool,
 }
+
+#[derive(Debug, FromRow, Serialize)]
+pub struct ApiTokenDto {
+    pub id: i64,
+    pub name: String,
+    pub token_prefix: String,
+    pub created_at: String,
+    pub last_used_at: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct CreateTokenReq {
+    pub name: String,
+}

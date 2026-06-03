@@ -1,5 +1,18 @@
 use crate::error::AppError;
 use rand::Rng;
+use sha2::{Digest, Sha256};
+
+/// Generate a personal API token, e.g. "daf_xxxxxxxx...".
+pub fn gen_api_token() -> String {
+    format!("daf_{}", random_slug(40))
+}
+
+/// SHA-256 hex digest of a string (used to store API tokens without plaintext).
+pub fn sha256_hex(s: &str) -> String {
+    let mut hasher = Sha256::new();
+    hasher.update(s.as_bytes());
+    hasher.finalize().iter().map(|b| format!("{:02x}", b)).collect()
+}
 
 const SLUG_CHARS: &[u8] = b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
